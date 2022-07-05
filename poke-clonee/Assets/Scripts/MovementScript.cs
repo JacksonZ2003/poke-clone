@@ -14,9 +14,11 @@ public class MovementScript : MonoBehaviour
     private Vector3 velocity;
 
     [SerializeField] private bool isGrounded;
+    [SerializeField] private bool onGrass;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float gravity;
+    [SerializeField] private LayerMask grassMask;
 
     //References
     private CharacterController controller;
@@ -36,6 +38,7 @@ public class MovementScript : MonoBehaviour
     private void Move()
     {
         isGrounded = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
+        onGrass = Physics.CheckSphere(transform.position, 0.2f, grassMask);
 
         if (isGrounded && velocity.y < 0)
         {
@@ -53,11 +56,13 @@ public class MovementScript : MonoBehaviour
             {
                 Walk();
                 Rotation();
+                CheckForEncounters();
             }
             else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
             {
                 Run();
                 Rotation();
+                CheckForEncounters();
             }
             else if (moveDirection == Vector3.zero)
             {
@@ -95,5 +100,16 @@ public class MovementScript : MonoBehaviour
         Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    private void CheckForEncounters()
+    {
+        if (onGrass)
+        {
+            if (Random.Range(1, 2000) == 1)
+            {
+                Debug.Log("A wild pokemon has appeared");
+            }
+        }
     }
 }
