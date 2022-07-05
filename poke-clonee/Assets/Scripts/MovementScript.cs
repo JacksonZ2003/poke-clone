@@ -19,10 +19,12 @@ public class MovementScript : MonoBehaviour
 
     //References
     private CharacterController controller;
+    private Animator anim;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -70,16 +72,18 @@ public class MovementScript : MonoBehaviour
 
     private void Idle()
     {
-
+        anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
     }
 
     private void Walk()
     {
         moveSpeed = walkSpeed;
+        anim.SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
     }
 
     private void Run()
     {
         moveSpeed = runSpeed;
+        anim.SetFloat("Speed", 1, 0.1f, Time.deltaTime);
     }
 }
