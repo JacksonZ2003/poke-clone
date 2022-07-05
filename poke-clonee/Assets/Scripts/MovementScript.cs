@@ -106,7 +106,7 @@ public class MovementScript : MonoBehaviour
     {
         if (onGrass)
         {
-            if (Random.Range(1, 2000) == 1)
+            if (Random.Range(1, 1750) == 1)
             {
                 Debug.Log("A wild pokemon has appeared");
             }
