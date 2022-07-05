@@ -8,6 +8,7 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
+    [SerializeField] public float rotationSpeed;
 
     private Vector3 moveDirection;
     private Vector3 velocity;
@@ -51,10 +52,12 @@ public class MovementScript : MonoBehaviour
             if (moveDirection != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
             {
                 Walk();
+                Rotation();
             }
             else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
             {
                 Run();
+                Rotation();
             }
             else if (moveDirection == Vector3.zero)
             {
@@ -85,5 +88,12 @@ public class MovementScript : MonoBehaviour
     {
         moveSpeed = runSpeed;
         anim.SetFloat("Speed", 1, 0.1f, Time.deltaTime);
+    }
+
+    private void Rotation()
+    {
+        Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
 }
