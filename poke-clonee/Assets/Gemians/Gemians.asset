@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfa9aa08b1fba6409b1c567d67d5df0, type: 3}
   m_Name: Gemians
   m_EditorClassIdentifier: 
-  gemianName: 
-  description: 
-  frontSprite: {fileID: 0}
-  backSprite: {fileID: 0}
+  gemianName: Venusaur
+  description: example/will be changed
+  frontSprite: {fileID: 21300000, guid: 42bc40881b97c624b86e59656f3cfe9c, type: 3}
+  backSprite: {fileID: 21300000, guid: bb7d338e143c23b438df7aa2b9b20d39, type: 3}
   type1: 0
   type2: 0
-  maxHp: 0
-  physicaldmg: 0
-  physicalrst: 0
-  magicdmg: 0
-  magicrst: 0
-  speed: 0
+  maxHp: 80
+  physicaldmg: 82
+  physicalrst: 83
+  magicdmg: 100
+  magicrst: 100
+  speed: 80
